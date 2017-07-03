@@ -1,0 +1,14 @@
+{
+"japanesePack" : [
+	{
+		"Food": {
+			"Is there an English menu?" : ["Eigo no menyuu ga arimasu ka?", "英語のメニューがありますか?"],
+			"Can I get chopsticks?" :  ["Ohashi o kudasai", "お箸をください?"]
+		},
+		"Travel": {
+			"Where is the bathroom?" : ["otearai wa doko desu ka?","お手洗いはどこですか"]
+		}
+	}
+
+]
+}
