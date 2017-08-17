@@ -50,10 +50,10 @@ public class MainActivity extends AppCompatActivity {
                 for(int j = 0; j < phrasesArray.length(); j++){
                     JSONObject phraseJSONObject = phrasesArray.getJSONObject(j);
                     String phrase = phraseJSONObject.getString("phrase");
-                    String japaneseTranslation = phraseJSONObject.getString("japaneseTranslation");
+                    String originalTranslation = phraseJSONObject.getString("originalTranslation");
                     String romanization = phraseJSONObject.getString("romanization");
 
-                    Phrase phraseObj = new Phrase(phrase, japaneseTranslation, romanization);
+                    Phrase phraseObj = new Phrase(phrase, originalTranslation, romanization);
                     categoryObj.addPhrase(phraseObj);
                 }
                 languagePackObj.addCategory(categoryObj);

@@ -9,12 +9,12 @@ import android.util.Log;
 public class Phrase {
 
     private final String phrase;
-    private final String japaneseTranslation;
+    private final String originalTranslation;
     private final String romanization;
 
-    public Phrase(String phrase, String japaneseTranslation, String romanization){
+    public Phrase(String phrase, String originalTranslation, String romanization){
         this.phrase = phrase;
-        this.japaneseTranslation = japaneseTranslation;
+        this.originalTranslation = originalTranslation;
         this.romanization = romanization;
     }
 
@@ -22,8 +22,8 @@ public class Phrase {
         return phrase;
     }
 
-    public String getJapaneseTranslation() {
-        return japaneseTranslation;
+    public String getOriginalTranslation() {
+        return originalTranslation;
     }
 
     public String getRomanization() {
@@ -32,7 +32,7 @@ public class Phrase {
 
     public void print(){
         Log.d("PHRASE", "    phrase: " +  phrase);
-        Log.d("PHRASE", "      japaneseTranslation: " +  japaneseTranslation);
+        Log.d("PHRASE", "      originalTranslation: " +  originalTranslation);
         Log.d("PHRASE", "      romanization: " +  romanization);
     }
 }
