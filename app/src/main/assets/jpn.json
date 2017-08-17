@@ -1,0 +1,30 @@
+{
+  "language" : "japanese",
+	"categories" : [
+      {
+      "category" : "Food",
+        "phrases": [
+          {
+            "phrase" : "Is there an English menu?",
+            "japaneseTranslation" : "英語のメニューがありますか?",
+            "romanization" : "Eigo no menyuu ga arimasu ka?"
+          },
+          {
+            "phrase" : "Can I get chopsticks?",
+            "japaneseTranslation" : "お箸をください?",
+            "romanization" : "Ohashi o kudasai."
+          }
+        ]
+      },
+      {
+      "category" : "Restroom",
+        "phrases": [
+          {
+            "phrase" : "Where is the bathroom?",
+            "japaneseTranslation" : "お手洗いはどこですか",
+            "romanization" : "otearai wa doko desu ka?"
+          }
+        ]
+      }
+	]
+}

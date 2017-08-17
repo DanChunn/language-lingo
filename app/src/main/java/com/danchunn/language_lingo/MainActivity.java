@@ -14,101 +14,64 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import static android.R.attr.category;
+import static android.R.attr.key;
+
 public class MainActivity extends AppCompatActivity {
-
-
-    HashMap<String, ArrayList<String>> bigMap = new HashMap<>(); //can i get chopsticks? , [eng answer,jpn answer]
+    private final String jsonFile = "jpn.json";
+    private LanguagePack languagePackObj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        readJson();
+        LanguagePack languagePack = readJson();
+        languagePack.printCategories();
     }
+
+    //parses json file to add phrases to categories and categories to a languagepack
     //https://stackoverflow.com/questions/9151619/how-to-iterate-over-a-jsonobject
-    protected void readJson(){
+    protected LanguagePack readJson(){
         String in = loadJSONFromAsset();
-        //Log.d("CREATION", "in: " +in);
         try {
-            HashMap<String, HashMap<String, ArrayList<String>>> categoryMap = new HashMap<>(); //categories and map of phrases
+            //finds array of categories
             JSONObject reader = new JSONObject(in);
-            JSONArray jpArray = reader.getJSONArray("japanesePack");
-            JSONObject jpp = jpArray.getJSONObject(0);
+            JSONArray categoriesArray = reader.getJSONArray("categories");
+            languagePackObj = new LanguagePack(reader.getString("language"));
 
-            Iterator<?> languagePackKeys = jpp.keys();
-            while( languagePackKeys.hasNext() ) {
-                String key = (String)languagePackKeys.next();
-                JSONObject categoryObj = jpp.getJSONObject(key);
+            //iterate through categories to find array of phrases
+            for(int i = 0; i < categoriesArray.length(); i++){
+                JSONObject categoryJSONObject = categoriesArray.getJSONObject(i);
+                String categoryName = categoryJSONObject.getString("category");
+                Category categoryObj = new Category(categoryName);
 
-                Iterator<?> categoryObjKeys = categoryObj.keys();
-                //Log.d("CREATION", "key: " + key); //food, travel, etc.
-                HashMap<String, ArrayList<String>> emptyMap = new HashMap<>();
-                categoryMap.put(key, emptyMap);
+                //iterate through phrases
+                JSONArray phrasesArray = categoryJSONObject.getJSONArray("phrases");
+                for(int j = 0; j < phrasesArray.length(); j++){
+                    JSONObject phraseJSONObject = phrasesArray.getJSONObject(j);
+                    String phrase = phraseJSONObject.getString("phrase");
+                    String japaneseTranslation = phraseJSONObject.getString("japaneseTranslation");
+                    String romanization = phraseJSONObject.getString("romanization");
 
-                while(categoryObjKeys.hasNext()){
-                    String innerKey = (String)categoryObjKeys.next();
-                    JSONArray textArray = categoryObj.getJSONArray(innerKey);
-
-                    ArrayList<String> list = JSONArrayToStringArray(textArray);
-                    /*
-                    for(int i = 0; i < list.size(); i++){
-                        Log.d("CREATION", "list element: " + list.get(i));
-                    }*/
-
-                    HashMap<String, ArrayList<String>> tempPhraseMap = categoryMap.get(key);
-                    tempPhraseMap.put(innerKey,list);
-                    //Log.d("CREATION", "phrase: " + innerKey + " : " + tempPhraseMap.get(innerKey));
+                    Phrase phraseObj = new Phrase(phrase, japaneseTranslation, romanization);
+                    categoryObj.addPhrase(phraseObj);
                 }
-
-
+                languagePackObj.addCategory(categoryObj);
             }
-
-            printMap(categoryMap);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        return languagePackObj;
     }
 
-    private void printMap( HashMap<String, HashMap<String, ArrayList<String>>> map){
-        Log.d("CREATION", "Map Size: " +  map.size());
-
-        for(HashMap.Entry<String, HashMap<String, ArrayList<String>>> entry : map.entrySet()){
-            String key = entry.getKey();
-            HashMap<String, ArrayList<String>> value = entry.getValue();
-            Log.d("CREATION", "Category: " +  key);
-
-            for(HashMap.Entry<String, ArrayList<String>> innerEntry : value.entrySet()) {
-                String innerKey = innerEntry.getKey();
-                ArrayList<String> innerValue = innerEntry.getValue();
-                Log.d("CREATION", "  Phrase: " +  innerKey);
-                for (int i = 0; i < innerValue.size(); i++) {
-                    Log.d("CREATION", "   Translations: " +  innerValue.get(i));
-
-                }
-            }
-        }
-    }
-
-    private ArrayList<String> JSONArrayToStringArray(JSONArray arr){
-        ArrayList<String> list = new ArrayList<>();
-        try {
-
-            for(int i = 0; i < arr.length(); i++){
-                list.add(arr.get(i).toString());
-                //Log.d("CREATION", "Added to List: " + list.get(i));
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        return list;
+    private void printLanguagePack(LanguagePack lp) {
+        lp.printCategories();
     }
 
     public String loadJSONFromAsset() {
         String json = null;
         try {
-            InputStream is = this.getAssets().open("lang.json");
+            InputStream is = this.getAssets().open(jsonFile);
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
