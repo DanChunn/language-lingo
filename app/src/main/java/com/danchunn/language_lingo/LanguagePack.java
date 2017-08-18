@@ -6,9 +6,6 @@ import java.util.ArrayList;
 
 import static android.R.attr.category;
 
-/**
- * Created by echo on 8/17/17.
- */
 
 public class LanguagePack {
 
@@ -36,4 +33,11 @@ public class LanguagePack {
         }
     }
 
+    public int numberOfCategories(){
+        return categories.size();
+    }
+
+    public ArrayList<Category> getCategories(){
+        return categories;
+    }
 }

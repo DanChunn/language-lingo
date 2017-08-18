@@ -2,10 +2,6 @@ package com.danchunn.language_lingo;
 
 import android.util.Log;
 
-/**
- * Created by echo on 8/17/17.
- */
-
 public class Phrase {
 
     private final String phrase;

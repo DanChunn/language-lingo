@@ -3,6 +3,8 @@ package com.danchunn.language_lingo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,13 +22,35 @@ import static android.R.attr.key;
 public class MainActivity extends AppCompatActivity {
     private final String jsonFile = "jpn.json";
     private LanguagePack languagePackObj;
-
+    Button[] buttons;
+    LinearLayout linear;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         LanguagePack languagePack = readJson();
+        buttons = new Button[languagePack.numberOfCategories()];
         languagePack.printCategories();
+
+        //fill categories
+        linear = (LinearLayout) findViewById(R.id.categories);
+        fillList();
+    }
+
+    protected void fillList(){
+        ArrayList<Category> categories = languagePackObj.getCategories();
+        for(int i = 0; i < categories.size(); i++){
+            Button button = createButton(categories.get(i).getCategoryName(), i);
+            buttons[i] = button;
+            linear.addView(button);
+        }
+    }
+
+    protected Button createButton(String text, int tag){
+        Button button = new Button(this);
+        button.setText(text);
+        button.setTag(tag);
+        return button;
     }
 
     //parses json file to add phrases to categories and categories to a languagepack

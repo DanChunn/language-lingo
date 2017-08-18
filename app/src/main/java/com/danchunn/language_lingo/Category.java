@@ -4,10 +4,6 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-/**
- * Created by echo on 8/17/17.
- */
-
 public class Category {
 
     private final String category;
