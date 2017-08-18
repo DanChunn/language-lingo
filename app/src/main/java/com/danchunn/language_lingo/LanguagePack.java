@@ -25,11 +25,11 @@ public class LanguagePack {
         return language;
     }
 
-    public void printCategories(){
+    public void print(){
         Log.d("LNGPCK", "language: " +  language);
         for(int i = 0; i < categories.size(); i++){
             Category category = categories.get(i);
-            category.printPhrases();
+            category.print();
         }
     }
 

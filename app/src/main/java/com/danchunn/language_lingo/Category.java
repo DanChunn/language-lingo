@@ -22,7 +22,7 @@ public class Category {
         return category;
     }
 
-    public void printPhrases(){
+    public void print(){
         Log.d("CATGRY", "  category: " +  category);
         for(int i = 0; i < phrases.size(); i++){
             Phrase phrase = phrases.get(i);
