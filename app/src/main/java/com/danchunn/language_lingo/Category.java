@@ -22,6 +22,11 @@ public class Category {
         return category;
     }
 
+    public ArrayList<Phrase> getPhrases(){
+        return phrases;
+    }
+
+
     public void print(){
         Log.d("CATGRY", "  category: " +  category);
         for(int i = 0; i < phrases.size(); i++){

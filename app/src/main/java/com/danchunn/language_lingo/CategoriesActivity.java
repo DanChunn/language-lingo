@@ -1,32 +1,21 @@
 package com.danchunn.language_lingo;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-
-import static android.R.attr.button;
-import static android.R.attr.category;
-import static android.R.attr.key;
-import static android.R.attr.tag;
-import static android.R.id.message;
-import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class CategoriesActivity extends AppCompatActivity {
 
@@ -41,10 +30,12 @@ public class CategoriesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_categories);
         LanguagePack languagePack = readJson();
         buttons = new Button[languagePack.numberOfCategories()];
         languagePack.print();
+        Blackboard.getInstance().addLanguagePack(languagePack);
+        Blackboard.getInstance().setCurrentLanguagePack(languagePack.getLanguage());
 
         //fill categories
         linear = (LinearLayout) findViewById(R.id.categories);
@@ -57,21 +48,15 @@ public class CategoriesActivity extends AppCompatActivity {
             Button button = createButton(categories.get(i).getCategoryName(), i);
             button.setOnClickListener(categoryButtonClicked);
             buttons[i] = button;
-
             linear.addView(button);
         }
     }
-/*
-    public void sendMessage(View view) {
-        Intent intent = new Intent(this, PhrasesActivity.class);
-        EditText editText = (EditText) findViewById(R.id.editText);
-        String message = editText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
-        startActivity(intent);
-    }*/
 
 
 
+    //consider using fragments?
+    //activities - want to be slim as possible, fragments should do work
+    //more reading here: https://stackoverflow.com/questions/9343241/passing-data-between-a-fragment-and-its-container-activity
     OnClickListener categoryButtonClicked = new OnClickListener() {
         @Override
         public void onClick(View view){
