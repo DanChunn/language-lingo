@@ -53,7 +53,7 @@ public class PhrasesActivity extends AppCompatActivity {
             String extraMessage = categoryIndex + " " + tag;
             intent.putExtra(EXTRA_MESSAGE, extraMessage);
             startActivity(intent);
-            Toast.makeText(getApplicationContext(), tag + " clicked button", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), tag + " clicked button", Toast.LENGTH_SHORT).show();
         }
     };
 

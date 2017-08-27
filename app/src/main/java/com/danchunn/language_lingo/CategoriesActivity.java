@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 public class CategoriesActivity extends AppCompatActivity {
 
     public static final String EXTRA_MESSAGE = "com.example.language_lingo.CATEGORY_ID";
-
+    private final String myGitHub = "github.com/danchunn";
     private final String jsonFile = "jpn.json";
     private LanguagePack languagePackObj;
     Button[] buttons;
@@ -39,6 +40,9 @@ public class CategoriesActivity extends AppCompatActivity {
 
         //fill categories
         linear = (LinearLayout) findViewById(R.id.categories);
+        TextView meTextView = new TextView(this);
+        meTextView.setText(myGitHub); //remove eventually
+        linear.addView(meTextView);
         fillList();
     }
 
@@ -64,7 +68,7 @@ public class CategoriesActivity extends AppCompatActivity {
             Object tag = view.getTag();
             intent.putExtra(EXTRA_MESSAGE, tag.toString());
             startActivity(intent);
-            Toast.makeText(getApplicationContext(), tag + " clicked button", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), tag + " clicked button", Toast.LENGTH_SHORT).show();
         }
     };
 

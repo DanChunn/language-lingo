@@ -2,6 +2,56 @@
   "language" : "japanese",
 	"categories" : [
       {
+        "category" : "Greeting",
+        "phrases": [
+          {
+            "phrase" : "Hello.",
+            "originalTranslation" : "こんにちわ.",
+            "romanization" : "Konnichiwa."
+          },
+          {
+            "phrase" : "How are you?",
+            "originalTranslation" : "おげんきですか?",
+            "romanization" : "O genkidesu ka."
+          },
+          {
+            "phrase" : "I’m fine. Thanks!",
+            "originalTranslation" : "元気です. ありがとう!",
+            "romanization" : "Genki desu. Arigato!"
+          },
+          {
+            "phrase" : "My name is ...",
+            "originalTranslation" : "私の名前は ... です.",
+            "romanization" : "Watashi wa no namae wa (my name) desu."
+          }
+        ]
+      },
+      {
+        "category" : "Thank you, please and sorry",
+        "phrases": [
+          {
+            "phrase" : "Thank you.",
+            "originalTranslation" : "ありがとう ございます",
+            "romanization" : "Arigatoo gozaimasu."
+          },
+          {
+            "phrase" : "Thank you very much.",
+            "originalTranslation" : "どうもありがとうございました.",
+            "romanization" : "Doomo arigatoo gozaimasu."
+          },
+          {
+            "phrase" : "Please.",
+            "originalTranslation" : "お願いします.",
+            "romanization" : "Onegaishimasu."
+          },
+          {
+            "phrase" : "(item)-please.",
+            "originalTranslation" : "-ください.",
+            "romanization" : "Kudasai."
+          }
+        ]
+      },
+      {
       "category" : "Food",
         "phrases": [
           {
