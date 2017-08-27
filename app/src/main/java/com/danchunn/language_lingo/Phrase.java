@@ -3,7 +3,7 @@ package com.danchunn.language_lingo;
 import android.util.Log;
 
 public class Phrase {
-
+    public static final int PHRASE_SIZE = 3;
     private final String phrase;
     private final String originalTranslation;
     private final String romanization;

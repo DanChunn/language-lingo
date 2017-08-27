@@ -18,6 +18,8 @@
         </activity>
         <activity android:name=".PhrasesActivity">
         </activity>
+        <activity android:name=".TranslationsActivity">
+        </activity>
     </application>
 
 </manifest>

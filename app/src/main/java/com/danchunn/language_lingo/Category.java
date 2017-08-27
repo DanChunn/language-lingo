@@ -26,6 +26,10 @@ public class Category {
         return phrases;
     }
 
+    public Phrase getPhrase(int index){
+        return phrases.get(index);
+    }
+
 
     public void print(){
         Log.d("CATGRY", "  category: " +  category);
