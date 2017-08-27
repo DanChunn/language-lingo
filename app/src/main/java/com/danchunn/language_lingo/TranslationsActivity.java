@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -39,6 +40,7 @@ public class TranslationsActivity extends AppCompatActivity {
         textViews = new TextView[Phrase.PHRASE_SIZE];
         textViews[0] = new TextView(this);
         textViews[0].setText(phrase.getPhrase());
+        textViews[0].setPadding(0,100,0,35);
         textViews[1] = new TextView(this);
         textViews[1].setText(phrase.getOriginalTranslation());
         textViews[1].setTextColor(Color.BLACK);
@@ -47,6 +49,7 @@ public class TranslationsActivity extends AppCompatActivity {
         textViews[2].setTextColor(Color.BLACK);
         for(int i = 0; i < textViews.length; i++){
             textViews[i].setTextSize(TypedValue.COMPLEX_UNIT_SP,20);
+            textViews[i].setGravity(Gravity.CENTER);
             linear.addView(textViews[i]);
         }
     }
